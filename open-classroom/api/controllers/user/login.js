@@ -28,21 +28,23 @@ module.exports = {
 
   exits: {
     success: {
-      responseType: 'json',
       status: 200
       
     }
   },
 
   fn: async function ({usernameid , passwordid}) {
+    var user = await User.findOne({
 
-    var user = await User.find({
-      where: {username: usernameid}, 
-      where: {password: passwordid}
+      username: usernameid,
+      password: passwordid
+
     });
-    if(!user) {return{
-      userAuthenticated: false
-    }}
+    if(!user) {
+      return{
+        userAuthenticated: false
+      };
+    }
     return{
       userAuthenticated: true
     };

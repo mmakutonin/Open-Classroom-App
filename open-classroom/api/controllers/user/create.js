@@ -35,18 +35,16 @@ module.exports = {
 
   exits: {
     success: {
-      responseType: 'json',
       status: 200
     }
   },
 
   fn: async function ({usernameid,passwordid,emailid}) {
-
-    await User.create({
+    var user = await User.create({
       username: usernameid,
       password: passwordid,
       email: emailid
-    });
+    })
   }
 
 
