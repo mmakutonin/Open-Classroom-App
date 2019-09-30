@@ -5,6 +5,8 @@ a [Sails v1](https://sailsjs.com) application
 
 ### Links
 
+[Link to currently published app on Heroku](https://morning-earth-10995.herokuapp.com/)
+
 + [Sails framework documentation](https://sailsjs.com/get-started)
 + [Version notes / upgrading](https://sailsjs.com/documentation/upgrading)
 + [Deployment tips](https://sailsjs.com/documentation/concepts/deployment)
@@ -16,11 +18,15 @@ a [Sails v1](https://sailsjs.com) application
 
 This app was originally generated on Fri Sep 13 2019 00:50:44 GMT-0400 (Eastern Daylight Time) using Sails v1.2.3.
 
-<!-- Internally, Sails used [`sails-generate@1.16.13`](https://github.com/balderdashy/sails-generate/tree/v1.16.13/lib/core-generators/new). -->
-
-
-
-<!--
-Note:  Generators are usually run using the globally-installed `sails` CLI (command-line interface).  This CLI version is _environment-specific_ rather than app-specific, thus over time, as a project's dependencies are upgraded or the project is worked on by different developers on different computers using different versions of Node.js, the Sails dependency in its package.json file may differ from the globally-installed Sails CLI release it was originally generated with.  (Be sure to always check out the relevant [upgrading guides](https://sailsjs.com/upgrading) before upgrading the version of Sails used by your app.  If you're stuck, [get help here](https://sailsjs.com/support).)
--->
+## To Run on Heroku
++ Install [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli).
++ Run `heroku login`
++ `cd` into your desired directory.
++ Run `git clone -b <branch-name> https://github.com/mmakutonin/Open-Classroom-App.git`
++ Cut all files from the `open-classroom-app/` folder and place them into the `Open-Classroom-App/` folder. Then, delete the `open-classroom-app/` folder.
++ Run `cd Open-Classroom-App`
++ Run `heroku create`
++ Run `git push heroku HEAD:master`
++ Run `heroku open`
++ The app should now be running in your browser. Share the link with your friends!
 
