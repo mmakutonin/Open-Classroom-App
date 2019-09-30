@@ -251,7 +251,7 @@ module.exports = {
     *                                                                          *
     ***************************************************************************/
      onlyAllowOrigins: [
-       'https://morning-earth-10995.herokuapp.com/'
+       'https://morning-earth-10995.herokuapp.com'
      ],
 
 
