@@ -16,17 +16,17 @@ module.exports = {
 
 
   inputs: {
-    usernameid: {
+    username: {
       description: "The unique username of a client",
       type: 'string',
       required: true
     },
-    passwordid: {
+    password: {
       description: "The password that verifys the user to allow log in",
       type: 'string',
       required: true
     },
-    emailid:{
+    email:{
       description: "The email for the client",
       type: 'string',
       required: true
@@ -39,11 +39,11 @@ module.exports = {
     }
   },
 
-  fn: async function ({usernameid,passwordid,emailid}) {
+  fn: async function ({username,password,email}) {
     var user = await User.create({
-      username: usernameid,
-      password: passwordid,
-      email: emailid
+      username: username,
+      password: password,
+      email: email
     })
   }
 

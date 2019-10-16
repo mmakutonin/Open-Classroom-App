@@ -33,6 +33,9 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
   'POST /api/login': 'user/login',
-  'POST /api/create': 'user/create'
+  'POST /api/create-user': 'user/create',
+  'POST /api/setclassinfo': 'class/setclassinfo',
+  'POST /api/getclassinfo': 'class/getclassinfo',
+  'POST /api/settoadmin': 'user/settoadmin'
 
 };

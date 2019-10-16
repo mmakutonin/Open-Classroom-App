@@ -22,6 +22,13 @@ module.exports = {
           type: 'string',
           required: true,
           unique: true
+      },
+      isAdmin:{
+          type: 'boolean',
+          defaultsTo: false
+      },
+      classesList:{
+          type: 'string'
       }
   },
   customToJSON: function (){

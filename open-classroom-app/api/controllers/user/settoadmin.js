@@ -1,15 +1,11 @@
-
-/**
- * Login Action
- *
- * @description :: Server-side actions for handling incoming requests.
- * @help        :: See https://sailsjs.com/docs/concepts/actions
- */
-
-
 module.exports = {
-  friendlyName: 'Login',
-  description: 'Logins user.',
+
+
+  friendlyName: 'Settoadmin',
+
+
+  description: 'Settoadmin user.',
+
 
   inputs: {
     username: {
@@ -24,14 +20,18 @@ module.exports = {
     }
   },
 
+
   exits: {
     success: {
       status: 200
-      
+    },
+    userDoesNotExist: {
+      description: "error thrown when user doesnt exist"
     }
   },
 
-  fn: async function ({username , password}) {
+
+  fn: async function ({username, password}) {
     var user = await User.findOne({
 
       username: username,
@@ -39,13 +39,10 @@ module.exports = {
 
     });
     if(!user) {
-      return{
-        userAuthenticated: false
-      };
+      throw "userDoesNotExist"
     }
-    return{
-      userAuthenticated: true
-    };
+    user.isAdmin = true;
+    return user.isAdmin;
   }
 
 };
