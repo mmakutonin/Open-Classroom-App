@@ -37,7 +37,10 @@ module.exports = {
             type: 'string',
             required: true,
             unique: true
-        }
+        },
+         history: {
+      collection: 'ChatHistory',
+      via: 'session'
     },
     customToJSON: function (){}
   };
