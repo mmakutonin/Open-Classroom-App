@@ -132,4 +132,5 @@ lib-cov
 *.log
 *.out
 *.pid
+*.lock
 
