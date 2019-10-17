@@ -32,7 +32,15 @@ module.exports.routes = {
   * not match any of those, it is matched against static assets.             *
   *                                                                          *
   ***************************************************************************/
+
+  //User Function Routes
   'POST /api/login': 'user/login',
-  'POST /api/create': 'user/create'
+  'POST /api/create-user': 'user/create',
+
+  //Twilio Function Routes
+  'POST /api/new-token': 'twilio/generate-token',
+  'POST /api/create-room': 'twilio/create-room',
+  'POST /api/close-room': 'twilio/close-room',
+  'POST /api/list-rooms': 'twilio/get-room-list'
 
 };

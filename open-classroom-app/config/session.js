@@ -19,6 +19,7 @@ module.exports.session = {
   *                                                                          *
   ***************************************************************************/
   secret: '99b6112cfb02203c634af2b11b5ef0fd',
+
   cookie: {
     secure: true
   }

@@ -250,6 +250,7 @@ module.exports = {
     * > Be sure to use the right protocol!  ("http://" vs. "https://")         *
     *                                                                          *
     ***************************************************************************/
+
      onlyAllowOrigins: [
        'https://morning-earth-10995.herokuapp.com'
      ],
