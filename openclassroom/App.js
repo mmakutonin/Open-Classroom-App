@@ -3,6 +3,7 @@ import { createStackNavigator } from 'react-navigation-stack'
 import CreateAccount  from './Components/react-components/CreateAccount'
 import MainPage from './Components/react-components/MainPage'
 import LoginPage from './Components/react-components/LoginPage'
+import RoomScreen from './Components/react-components/RoomScreen'
 
 
 const AppNavigatior = createStackNavigator({
@@ -14,6 +15,9 @@ const AppNavigatior = createStackNavigator({
   },
   MainPage: {
     screen: MainPage
+  },
+  RoomScreen: {
+    screen: RoomScreen
   }
 },
 {

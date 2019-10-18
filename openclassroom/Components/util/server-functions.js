@@ -27,7 +27,7 @@ export default {
         .catch(err => console.log(err))
     },
 
-    //Server Room Creation Functions
+    //Server Room Functions
     openRoom: (username, password, roomName) => {
         return axios.post(
             'https://morning-earth-10995.herokuapp.com/api/new-token',
@@ -55,6 +55,24 @@ export default {
         )
         .then(res => ({success: true}))
         .catch(err => ({success: false, error: err}))
+    },
+    listRooms: (username, password, completedRooms, roomName='') => {
+        let axiosObj = {
+            "userid": username,
+            "password": password,
+            "filterCompletedRooms": completedRooms
+        }
+        if(roomName) {
+            axiosObj.roomName = roomName
+        }
+
+        return axios.post(
+            'https://morning-earth-10995.herokuapp.com/api/list-rooms',
+            axiosObj
+        )
+        .then(res => ({success: true, res: res.data}))
+        .catch(err => ({success: false, error: err}))
+
     },
 
     //Server Token Generation Functions
