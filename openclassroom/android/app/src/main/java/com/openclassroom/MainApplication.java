@@ -1,5 +1,7 @@
 package com.openclassroom;
 
+import com.twiliorn.library.TwilioPackage;
+
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
@@ -43,7 +45,8 @@ public class MainApplication extends Application implements ReactApplication {
           new ReanimatedPackage(),
           new RNGestureHandlerPackage(),
           new RNScreensPackage(),
-          new ModuleRegistryAdapter(mModuleRegistryProvider)
+          new ModuleRegistryAdapter(mModuleRegistryProvider),
+          new TwilioPackage()
       );
     }
 
