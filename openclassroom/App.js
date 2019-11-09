@@ -10,19 +10,19 @@ const AppNavigatior = createStackNavigator({
   Login: {
     screen: LoginPage
   },
-  CreateAccount:{
-    screen: CreateAccount
-  },
-  MainPage: {
-    screen: MainPage
-  },
-  RoomScreen: {
-    screen: RoomScreen
-  }
-},
-{
-  initialRouteName: 'Login'
-}
+//   CreateAccount:{
+//     screen: CreateAccount
+//   },
+//   MainPage: {
+//     screen: MainPage
+//   },
+//   RoomScreen: {
+//     screen: RoomScreen
+//   }
+// },
+// {
+//   initialRouteName: 'Login'
+// }
 )
 
 export default createAppContainer(AppNavigatior)

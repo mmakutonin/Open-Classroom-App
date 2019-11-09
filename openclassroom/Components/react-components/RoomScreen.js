@@ -45,7 +45,7 @@ export default class RoomScreen extends Component {
         this.setState({status: 'connecting'})
     }
 
-    _onExitRoom() {
+    async _onExitRoom() {
         if(this.props.isAdmin) {
             const roomSid = await ServerFunctions.listRooms(this.props.username, this.props.password, false, this.props.roomName)
                                     .then(res => res.res[0].sid)
