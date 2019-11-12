@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, View, TextInput, TouchableOpacity, Modal } from 'react-native';
+import serverFxns from '../util/server-functions'
 import styles from './StyleSheet'
 
 class LoginPage extends React.Component {
@@ -12,32 +13,38 @@ class LoginPage extends React.Component {
             modalVisible: false,
         }
     }
-    _handlePress() {
-        console.log(this.state.username && this.state.password)
+    _login() {
         if ((this.state.username && this.state.password) == false) {
             this.setModalVisible(true)
-            return;
         }
-        this.props.navigation.navigate('MainPage')
+        else {
+            serverFxns.login(this.state.username, this.state.password).then(success => {
+                this.props.navigation.navigate('MainPage', {
+                    username: this.state.username,
+                    password: this.state.password
+                })
+            })
+        }
     }
-    setModalVisible(visible) {
-        this.setState({ modalVisible: visible })
+    setModalVisible(visibility) {
+        this.setState({ modalVisible: visibility })
     }
 
 
     render() {
         return (
-            <View style={styles.MainPart}>
+            <View style={styles.login}>
 
                 <Modal
                     visible={this.state.modalVisible}>
 
-                    <Text>
-                        Wrong Password
-                     </Text>
+                    <TouchableOpacity style={styles.loginButton} onPress={() => this.setModalVisible(false)}>
+                        <Text >Wrong Password - touch to try again</Text>
+                    </TouchableOpacity>
+
                 </Modal>
 
-
+                <Text style={styles.titleText} >Open Classroom</Text>
 
                 <TextInput placeholder='Username' style={styles.userName}
                     returnKeyType={"next"}
@@ -49,19 +56,13 @@ class LoginPage extends React.Component {
                     onChangeText={(passtext) => this.setState({ password: passtext })}
                 />
 
-                <TouchableOpacity style={styles.loginButton} onPress={() => this._handlePress()}>
+                <TouchableOpacity style={styles.loginButton} onPress={() => this._login()}>
                     <Text style={styles.loginText}>Log in</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity style={styles.createAccount} onPress={() => this.props.navigation.navigate("CreateAccount")}>
                     <Text style={styles.createAccountText}>Create Account</Text>
                 </TouchableOpacity>
-
-
-
-                <Text style={styles.title}>Open Classroom</Text>
-
-
 
             </View>
         )

@@ -17,13 +17,13 @@ class CreateAccount extends React.Component {
 
     createAccount() {
         //checkFields
-        if(this.state.username && this.state.password && this.state.confirmPass && this.state.email===false) {
-            openModal('Please fill out all fields')
+        if(!(this.state.username && this.state.password && this.state.confirmPass && this.state.email)) {
+            this.openModal('Please fill out all fields')
         }
         else if(this.state.password !== this.state.confirmPass) {
-            openModal('Passwords do not match')
+            this.openModal('Passwords do not match')
         }
-        else{
+        else {
         //Create Account
             serverFxns.createUser(this.state.username, this.state.password, this.state.email)
             //Navigate to main page
@@ -33,7 +33,7 @@ class CreateAccount extends React.Component {
                     password: this.state.password
                 })
             })
-            .catch((err) => openModal('There was an error creating your account: ' + err))
+            .catch((err) => this.openModal('There was an error creating your account: ' + err))
         }
     }
 
@@ -51,7 +51,7 @@ class CreateAccount extends React.Component {
             <View styles={accountStyles.createAccount}>
                 <Modal visible={this.state.modalOpen}>
                     <Text>{this.state.modalText}</Text>
-                    <TouchableOpacity style={styles.loginButton} onPress={() => this.openModal()}>
+                    <TouchableOpacity onPress={() => this.openModal()}>
                         <Text >Wrong Password - touch to try again</Text>
                     </TouchableOpacity>
                 </Modal>
