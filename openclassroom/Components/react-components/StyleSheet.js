@@ -4,12 +4,12 @@ import {StyleSheet} from 'react-native'
 
 
 const styles = StyleSheet.create({
-MainPart: {
+login: {
     flex:1
 },
 loginButton: {
     borderWidth: 1,
-    top: "80%",
+    top: "60%",
     borderColor: "gray",
     position: "relative",
     height: 55,
@@ -47,15 +47,14 @@ loginText: {
     top: "18%",
     color: "gray"
 },
-title: {
+titleText: {
     alignSelf: "center",
     fontSize: 50,
-    color: "#8B4513",
-    bottom: "%" 
+    color: "#8B4513"
 },
 createAccount: {
     borderWidth: 1,
-    top: "83%",
+    top: "50%",
     borderColor: "brown",
     position: "relative",
     height: 55,

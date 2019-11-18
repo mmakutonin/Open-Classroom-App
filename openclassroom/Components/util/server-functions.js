@@ -1,36 +1,38 @@
 import axios from 'axios';
-
+const serverUrl = 'https://morning-earth-10995.herokuapp.com/'
 export default {
-
+    serverUrl: serverUrl,
     //Server Authentication Functions
     createUser: (username, password, email) => {
         return axios.post(
-            'https://morning-earth-10995.herokuapp.com/api/create-user',
+            serverUrl + 'api/create-user',
             {
                 "usernameid": username,
                 "passwordid": password,
                 "emailid": email
             }
         )
-        .then(res => ({success: true}))
-        .catch(err => ({success: false, error: err}))
+        .then(res => true)
     },
     login: (username, password) => {
         return axios.post(
-            'https://morning-earth-10995.herokuapp.com/api/login',
+            serverUrl + 'api/login',
             {
                 "usernameid": username,
                 "passwordid": password
             }
         )
-        .then(res => res.data.userAuthenticated)
-        .catch(err => console.log(err))
+        .then(res => {
+            if(!res.data.userAuthenticated)
+                throw Error('Login Failed')
+            return true
+        })
     },
 
     //Server Room Functions
     openRoom: (username, password, roomName) => {
         return axios.post(
-            'https://morning-earth-10995.herokuapp.com/api/new-token',
+            serverUrl + 'api/create-room',
             {
                 "userid": username,
                 "password": password,
@@ -38,25 +40,22 @@ export default {
             }
         )
         .then(res => ({
-            success: true,
             roomName: res.data.roomName,
             roomSid: res.data.roomSid
         }))
-        .catch(err => ({success: false, error: err}))
     },
     closeRoom: (username, password, roomSid) => {
         return axios.post(
-            'https://morning-earth-10995.herokuapp.com/api/new-token',
+            serverUrl + 'api/close-room',
             {
                 "userid": username,
                 "password": password,
                 "roomSid": roomSid
             }
         )
-        .then(res => ({success: true}))
-        .catch(err => ({success: false, error: err}))
+        .then(res => true)
     },
-    listRooms: (username, password, completedRooms, roomName='') => {
+    listRooms: (username, password, completedRooms=false, roomName='') => {
         let axiosObj = {
             "userid": username,
             "password": password,
@@ -67,26 +66,24 @@ export default {
         }
 
         return axios.post(
-            'https://morning-earth-10995.herokuapp.com/api/list-rooms',
+            serverUrl + 'api/list-rooms',
             axiosObj
         )
-        .then(res => ({success: true, res: res.data}))
-        .catch(err => ({success: false, error: err}))
+        .then(res => res.data)
 
     },
 
     //Server Token Generation Functions
     generateToken: (username, password, roomSid) => {
         return axios.post(
-            'https://morning-earth-10995.herokuapp.com/api/new-token',
+            serverUrl + 'api/new-token',
             {
                 "userid": username,
                 "password": password,
                 "roomSid": roomSid
             }
         )
-        .then(res => ({success: true, token: res.data.token}))
-        .catch(err => ({success: false, error: err}))
+        .then(res => res.data.token)
     }
 }
 

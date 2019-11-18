@@ -1,70 +1,65 @@
-import React from 'react';
-import { Text, View, TextInput, TouchableOpacity, Modal } from 'react-native';
+import React, { createRef } from 'react';
+import { Text } from 'react-native';
 import serverFxns from '../util/server-functions'
-import styles from './StyleSheet'
+import { ThemeProvider, Input, Button, Overlay } from 'react-native-elements'
+
 
 class LoginPage extends React.Component {
     constructor(props) {
         super(props)
-
         this.state = {
             username: '',
             password: '',
-            modalVisible: false,
+            modalVisible: false
         }
     }
     _login() {
-        if ((this.state.username && this.state.password) == false) {
+        const { username, password } = this.state
+
+        if ((username && password) == false) {
             this.setModalVisible(true)
         }
         else {
-            serverFxns.login(this.state.username, this.state.password).then(success => {
+            serverFxns.login(username, password)
+            .then(success => {
                 this.props.navigation.navigate('MainPage', {
-                    username: this.state.username,
-                    password: this.state.password
+                    username: username,
+                    password: password
                 })
             })
+            .catch(err => this.setModalVisible(true))
         }
     }
     setModalVisible(visibility) {
         this.setState({ modalVisible: visibility })
     }
+    _createAccount() {
+        this.props.navigation.navigate('CreateAccount')
+    }
 
 
     render() {
+
         return (
-            <View style={styles.login}>
+            <ThemeProvider>
 
-                <Modal
-                    visible={this.state.modalVisible}>
+                <Overlay isVisible={this.state.modalVisible} onBackdropPress={() => this.setModalVisible(false)}>
+                    <Text>That looks like the wrong username/password combination. Please try again.</Text>
+                </Overlay>
 
-                    <TouchableOpacity style={styles.loginButton} onPress={() => this.setModalVisible(false)}>
-                        <Text >Wrong Password - touch to try again</Text>
-                    </TouchableOpacity>
+                <Input placeholder='Username' 
+                    leftIcon={{ type: 'font-awesome', name: 'user' }} 
+                    onChangeText={(text) => this.setState({ username: text })} />
 
-                </Modal>
+                <Input placeholder='Password' 
+                    leftIcon={{ type: 'font-awesome', name: 'lock' }} 
+                    onChangeText={(text) => this.setState({ password: text })} 
+                    secureTextEntry={true}/>
 
-                <Text style={styles.titleText} >Open Classroom</Text>
+                <Button title='Login' onPress={() => this._login()} />
 
-                <TextInput placeholder='Username' style={styles.userName}
-                    returnKeyType={"next"}
-                    onChangeText={(usertext) => this.setState({ username: usertext })}
-                />
-
-                <TextInput placeholder='Password' style={styles.passWord}
-                    returnKeyText={"next"}
-                    onChangeText={(passtext) => this.setState({ password: passtext })}
-                />
-
-                <TouchableOpacity style={styles.loginButton} onPress={() => this._login()}>
-                    <Text style={styles.loginText}>Log in</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity style={styles.createAccount} onPress={() => this.props.navigation.navigate("CreateAccount")}>
-                    <Text style={styles.createAccountText}>Create Account</Text>
-                </TouchableOpacity>
-
-            </View>
+                <Button title='Create Account' onPress={() => this._createAccount()} />
+            </ThemeProvider>
         )
 
     }

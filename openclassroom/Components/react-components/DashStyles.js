@@ -3,7 +3,7 @@ import React from 'react'
 import {StyleSheet} from 'react-native'
 
 const accountStyles = StyleSheet.create({
-    dashboardView:{
+    createAccount:{
         flex: 1
 
     },
@@ -14,7 +14,7 @@ const accountStyles = StyleSheet.create({
     },
     userNameText:{
     position: 'relative',
-    top: '160%',
+    top: '50%',
     left: '10%',
     borderWidth: 1,
     borderTopWidth: 0,
@@ -26,7 +26,7 @@ const accountStyles = StyleSheet.create({
     },
     passwordText:{
     position: 'relative',
-    top: '180%',
+    top: '70%',
     left: '10%',
     borderWidth: 1,
     borderLeftWidth: 0,
@@ -36,7 +36,7 @@ const accountStyles = StyleSheet.create({
     },
     repPasswordText:{
     position: 'relative',
-    top: '200%',
+    top: '80%',
     left: '10%',
     borderWidth: 1,
     borderTopWidth:0,
@@ -46,7 +46,7 @@ const accountStyles = StyleSheet.create({
     },
     email:{
     position: 'relative',
-    top: '220%',
+    top: '90%',
     left: '10%',
     borderWidth: 1,
     borderTopWidth: 0,
@@ -56,7 +56,7 @@ const accountStyles = StyleSheet.create({
     },
     createAccountTouch:{
     borderWidth: 1,
-    top: "250%",
+    top: "120%",
     borderColor: "gray",
     position: "relative",
     height: 55,
