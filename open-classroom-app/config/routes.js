@@ -41,6 +41,9 @@ module.exports.routes = {
   'POST /api/new-token': 'twilio/generate-token',
   'POST /api/create-room': 'twilio/create-room',
   'POST /api/close-room': 'twilio/close-room',
-  'POST /api/list-rooms': 'twilio/get-room-list'
+  'POST /api/list-rooms': 'twilio/get-room-list',
+
+  //View Routes
+  'POST /view/mobile-room': 'views/mobile-video'
 
 };
